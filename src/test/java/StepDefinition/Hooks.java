@@ -8,6 +8,7 @@ import io.cucumber.java.Scenario;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 public class Hooks {
 
     private static String scenarioName = null;
@@ -27,7 +28,7 @@ public class Hooks {
             if (ReusableMethods.getDriver() == null) {
                 ReusableMethods.launchBrowser();
                 ReusableMethods.screenMaximize();
-                ReusableMethods.implicitlyWait();
+                ReusableMethods.implicitlyWait(1000);
                 CommonUtils.getInstance().initWebElements();
             }
         } catch (Exception e) {
@@ -39,7 +40,9 @@ public class Hooks {
     public void afterScenario() {
         try {
             ReusableMethods.takeScreenShot();
+            ReusableMethods.closeBrowser();
             ReusableMethods.tearDown();
+            ReusableMethods.deleteCookies();
         } catch (Exception e) {
             LOGGER.error(e);
         }

@@ -4,7 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginPage {
-
     private static LoginPage loginInstance;
 
     private LoginPage() {
@@ -26,6 +25,10 @@ public class LoginPage {
     @FindBy(xpath = "//input[@type=\"submit\"]")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//a[text()=\"Log Out\"]")
+    private WebElement logoutButton;
+
+
     public void enterUserName(String username) {
         userName.sendKeys(username);
     }
@@ -37,5 +40,10 @@ public class LoginPage {
     public void clickLoginButton() {
         loginButton.click();
     }
+
+    public void clickLogoutButton() {
+        logoutButton.click();
+    }
+
 
 }
